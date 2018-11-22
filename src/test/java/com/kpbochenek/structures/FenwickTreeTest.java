@@ -35,5 +35,56 @@ public class FenwickTreeTest {
         assertEquals(0, t.readRange(5, 9));
     }
 
-    //TODO: testy dla scalowania
+    @Test
+    void addedMultipleValues() {
+        FenwickTree t = new FenwickTree(10);
+
+        t.add(3, 1);
+        t.add(5, 2);
+        t.add(7, 4);
+
+        assertEquals(0, t.read(2));
+        assertEquals(1, t.read(3));
+        assertEquals(1, t.read(4));
+        assertEquals(3, t.read(5));
+        assertEquals(3, t.read(6));
+        assertEquals(7, t.read(7));
+        assertEquals(7, t.read(8));
+    }
+
+    @Test
+    void scalingUp() {
+        FenwickTree t = new FenwickTree(10);
+
+        t.add(3, 1);
+        t.add(5, 2);
+        t.add(7, 4);
+
+        t.scaleUp(10);
+
+        assertEquals(0, t.read(2));
+        assertEquals(10, t.read(3));
+        assertEquals(10, t.read(4));
+        assertEquals(30, t.read(5));
+        assertEquals(30, t.read(6));
+        assertEquals(70, t.read(7));
+    }
+
+    @Test
+    void scaleDown() {
+        FenwickTree t = new FenwickTree(10);
+
+        t.add(3, 10);
+        t.add(5, 20);
+        t.add(7, 40);
+
+        t.scaleDown(2);
+
+        assertEquals(0, t.read(2));
+        assertEquals(5, t.read(3));
+        assertEquals(5, t.read(4));
+        assertEquals(15, t.read(5));
+        assertEquals(15, t.read(6));
+        assertEquals(35, t.read(7));
+    }
 }

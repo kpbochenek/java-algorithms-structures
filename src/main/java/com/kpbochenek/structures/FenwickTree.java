@@ -3,8 +3,6 @@ package com.kpbochenek.structures;
 /**
  * Tree used to store sum values.
  * Value in given index represents sum of all values to this index and all index.
- * Tree only handling non-negative values.
- *
  */
 public class FenwickTree {
     private long[] array;
@@ -18,8 +16,8 @@ public class FenwickTree {
     }
 
     /**
-     * Returns a value at given idx.
-     * Value represents sum of elements [1 .. idx] inclusive!
+     * Returns a sum of added elements till given index
+     * [1 .. idx] inclusive!
      */
     public long read(int idx) {
         long sum = 0;
